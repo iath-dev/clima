@@ -1,8 +1,11 @@
 import React from 'react';
+import { Header } from './components';
 
 function App() {
   return (
-    <h1>Clima</h1>
+    <React.Fragment>
+      <Header title="Clima React App" />
+    </React.Fragment>
   );
 }
 
