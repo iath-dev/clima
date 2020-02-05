@@ -1,9 +1,7 @@
 import React from 'react';
-import { formDefault } from '../../constants/docs';
 
-const Form = () => {
+const Form = ({ data, setData, setConsult }) => {
 
-    const [data, setData] = React.useState(formDefault);
     const [error, setError] = React.useState(false);
     const { city, country } = data;
 
@@ -21,6 +19,7 @@ const Form = () => {
         }
 
         setError(false);
+        setConsult(true);
 
     }
 
