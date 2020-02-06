@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
 const Clima = ({ result }) => {
 
@@ -29,5 +30,9 @@ const Clima = ({ result }) => {
         </div>
      );
 }
- 
+
+Clima.propTypes = {
+    result: PropTypes.object.isRequired,
+}
+
 export default Clima;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header } from './components';
-import { Form, Clima } from './containers';
+import { Form, Clima, Error } from './containers';
 import { formDefault } from './constants/docs';
 import { apiKey } from './config';
 
@@ -9,6 +9,7 @@ function App() {
   const [data, setData] = React.useState(formDefault);
   const [result, setResult] = React.useState({});
   const [consult, setConsult] = React.useState(false);
+  const [error, setError] = React.useState(false);
 
   const { city, country } = data;
 
@@ -18,6 +19,11 @@ function App() {
         const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${apiKey}`;
         const response = await fetch(url);
         const res = await response.json();
+        if (res.cod === '404') {
+          setError(true);
+        } else {
+          setError(false);
+        }
         setResult(res);
         setConsult(false);
       }
@@ -35,7 +41,7 @@ function App() {
               <Form data={data} setData={setData} setConsult={setConsult} />
             </div>
             <div className="col m6 s12">
-              <Clima result={result} />
+              { error ? <Error message="No se han encontrado resultados" /> : <Clima result={result} /> }
             </div>
           </div>
         </div>

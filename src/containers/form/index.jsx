@@ -1,4 +1,6 @@
 import React from 'react';
+import { Error } from '..';
+import PropTypes from 'prop-types'
 
 const Form = ({ data, setData, setConsult }) => {
 
@@ -25,7 +27,7 @@ const Form = ({ data, setData, setConsult }) => {
 
     return ( 
         <form onSubmit={handleSubmit}>
-            { error && <p className="red darken-4 error">Todos los campos deben de ser diligenciados</p>  }
+            { error && <Error message="Todos los campos deben de ser diligenciados" /> }
             <div className="input-field col s12">
                 <input
                     type="text"
@@ -43,7 +45,7 @@ const Form = ({ data, setData, setConsult }) => {
                     value={country}
                     onChange={handleChanges}
                 >
-                    <option value="">--Selecione un Pais--</option>
+                    <option value="">--Seleccioné un País--</option>
                     <option value="US">Estados Unidos</option>
                     <option value="MX">México</option>
                     <option value="AR">Argentina</option>
@@ -64,5 +66,14 @@ const Form = ({ data, setData, setConsult }) => {
         </form>
      );
 }
- 
+
+Form.propTypes = {
+    data: PropTypes.shape({
+        city: PropTypes.string.isRequired,
+        country: PropTypes.string.isRequired,
+    }).isRequired,
+    setData: PropTypes.func.isRequired,
+    setConsult: PropTypes.func.isRequired,
+}
+
 export default Form;
