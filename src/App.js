@@ -16,7 +16,8 @@ function App() {
   React.useEffect(() => {
     const consultApi = async () => {
       if (consult) {
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${apiKey}`;
+        // Hay casos en los que las APIS requieren el https y no el http solamente
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${apiKey}`;
         const response = await fetch(url);
         const res = await response.json();
         if (res.cod === '404') {
