@@ -1,12 +1,12 @@
 import React from 'react';
 import { Header } from './components';
-import { Form } from './containers';
+import { Form, Clima } from './containers';
 import { formDefault } from './constants/docs';
 import { apiKey } from './config';
 
 function App() {
 
-  const [data, setdata] = React.useState(formDefault);
+  const [data, setData] = React.useState(formDefault);
   const [result, setResult] = React.useState({});
   const [consult, setConsult] = React.useState(false);
 
@@ -19,10 +19,10 @@ function App() {
         const response = await fetch(url);
         const res = await response.json();
         setResult(res);
+        setConsult(false);
       }
     }
     consultApi();
-    console.log(city)
   }, [consult])
 
   return (
@@ -32,10 +32,10 @@ function App() {
         <div className="container">
           <div className="row">
             <div className="col m6 s12">
-              <Form data={data} setData={setdata} setConsult={setConsult} />
+              <Form data={data} setData={setData} setConsult={setConsult} />
             </div>
             <div className="col m6 s12">
-              2
+              <Clima result={result} />
             </div>
           </div>
         </div>
